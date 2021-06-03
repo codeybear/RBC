@@ -10,7 +10,7 @@ async function getUPRN(postCode) {
   return json
 }
 
-function getCollections(UPRN) {
+async function getCollections(UPRN) {
   const response = await fetch(`https://api.readingdev.com/api/collections/${UPRN}`)
 
   if (!response.ok) {

@@ -16,8 +16,26 @@
         <input type="text"><input>
     </form>
 
+    <div id="app">
+        {{ info }}
+    </div>
+
     <script>
-        data = getUPRN('RG1 2LU').then(data => console.log(data));
+        new Vue({
+            el: '#app',
+            data () {
+                return {
+                info: null
+                }
+            },
+            mounted () {
+                data = getUPRN('RG1 2LU').then(data => this.info = data);
+            }            
+        })
+        
+        // axios
+        // .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        // .then(response => (this.info = response))
     </script>
 </body>
 </html>
