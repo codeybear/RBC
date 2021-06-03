@@ -6,36 +6,38 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src='main.js'></script>
 </head>
 
-<body>
-    <form action="">
-        <input type="text"><input>
-    </form>
-
+<body>      
     <div id="app">
-        {{ info }}
+        <h3 class="subtitle">Bin Collections Dates Lookup</h3>
+        
+        <h1>Matching addresses:</h1>
+        
+        <div v-for="address in addresses">
+            <span>{{ address.SiteShortAddress }}</span>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
 
     <script>
         new Vue({
             el: '#app',
             data () {
                 return {
-                info: null
+                addresses: null
                 }
             },
             mounted () {
-                data = getUPRN('RG1 2LU').then(data => this.info = data);
+                data = getUPRN('RG1 2LU')
+                       .then(data => this.addresses = data.Addresses);
             }            
         })
-        
-        // axios
-        // .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        // .then(response => (this.info = response))
     </script>
 </body>
 </html>
