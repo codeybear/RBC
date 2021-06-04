@@ -17,14 +17,19 @@
         <h3 class="subtitle">Bin Collections Dates Lookup</h3>
 
         <section>
-            <b-field label="Name">
-                <b-input placeholder="Search for a postcode" icon="magnify"></b-input>
-            </b-field>
+            <field label="Name">
+                <input placeholder="Search for a postcode" icon="magnify" v-on:keyup.enter="loadAddresses"></b-input>
+            </field>
+
+            <field label="Name">
+                <input placeholder="Search for a postcode" icon="magnify" v-on:keyup.enter="loadAddresses"></b-input>
+            </field>
         </section>
         
         <h1>Matching addresses:</h1>
         
         <div v-for="address in addresses">
+            <span>{{ address.AccountSiteUprn }}</span>
             <span>{{ address.SiteShortAddress }}</span>
         </div>
 
@@ -42,21 +47,20 @@
             data () {
                 return {
                     addresses: null,
-                    columns: [
-                        { field: 'SiteAddress2' },
-                        { label: 'Address' }
-                    ]
+                    collections: null
                 }
             },
             methods: {
-                loadAddresses: function() {
-                    getUPRN('RG1 2LU')
-                           .then(data => this.addresses = data.Addresses);
+                loadAddresses: function(event) {
+                    getUPRN(event.target.value)
+                        .then(data => this.addresses = data.Addresses);
+                },
+                loadCollections: function(event) {
+                    getCollections(event.target.value)
+                        .then(data => this.collections = data.collections);
+                    
                 }
-            },
-            mounted () {
-                this.loadAddresses();
-            }       
+            }
         })
     </script>
 </body>
