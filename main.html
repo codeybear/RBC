@@ -6,7 +6,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css"> -->
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
     <script src='main.js'></script>
@@ -17,12 +17,12 @@
         <h3 class="subtitle">Bin Collections Dates Lookup</h3>
 
         <section>
-            <field label="Name">
+            <field label="Postcode">
                 <input placeholder="Search for a postcode" icon="magnify" v-on:keyup.enter="loadAddresses"></b-input>
             </field>
 
-            <field label="Name">
-                <input placeholder="Search for a postcode" icon="magnify" v-on:keyup.enter="loadAddresses"></b-input>
+            <field label="Lookup">
+                <input placeholder="" icon="magnify" v-on:keyup.enter="loadCollections"></b-input>
             </field>
         </section>
         
@@ -31,15 +31,19 @@
         <div v-for="address in addresses">
             <span>{{ address.AccountSiteUprn }}</span>
             <span>{{ address.SiteShortAddress }}</span>
+            <span><a href="#" :id=address.AccountSiteUprn v-on:click="loadCollections">Click Me</a></span>
         </div>
 
-        <template>
-    <!-- <b-table :data="addresses" :columns="columns"></b-table> -->
-</template>
+        <h1>Collections:</h1>
+        <div v-for="collection in collections">
+            <span>{{ collection.service }}</span>
+            <span>{{ collection.read_date }}</span>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <!-- <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script> -->
 
     <script>
         new Vue({
