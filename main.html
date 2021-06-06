@@ -60,7 +60,7 @@
                         .then(data => this.addresses = data.Addresses);
                 },
                 loadCollections: function(event) {
-                    getCollections(event.target.value)
+                    getCollections(event.target.id)
                         .then(data => this.collections = data.collections);
                     
                 }
