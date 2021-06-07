@@ -28,7 +28,7 @@
 
             </div>
 
-            <div class="input-group w-50">
+            <div class="input-group w-50 mt-2" v-if="addresses">
                 <h4>Matching addresses:</h4>
         
                 <table class="table">
@@ -41,14 +41,14 @@
                     <tbody>
                         <tr v-for="address in addresses">
                             <td>{{ address.SiteShortAddress }}</td>
-                            <td><a href="#" :id=address.AccountSiteUprn v-on:click="loadCollections">Click Me</a></td>
+                            <td><a href="#" :id=address.AccountSiteUprn v-on:click="loadCollections">Search</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="input-group w-50">
-                <h4>Matching addresses:</h4>
+            <div class="input-group w-50 mt-2" v-if="collections">
+                <h4>Matching collections:</h4>
         
                 <table class="table">
                     <thead>
@@ -65,14 +65,7 @@
                         </tr>                          
                     </tbody>
             </div>
-        </section>
-        
-        
-        <!-- <h4>Collections:</h4>
-        <div v-for="collection in collections">
-            <span>{{ collection.service }}</span>
-            <span>{{ collection.read_date }}</span>
-        </div> -->
+        </section>        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -81,12 +74,10 @@
     <script>
         new Vue({
             el: '#app',
-            data () {
-                return {
+            data: {
                     addresses: null,
                     collections: null
-                }
-            },
+                },
             methods: {
                 loadAddresses: function(event) {
                     getUPRN(event.target.value)
