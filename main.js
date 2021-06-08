@@ -1,3 +1,4 @@
+// GET web api, returns a list of addresses
 async function getUPRN(postCode) {
   const response = await fetch(`https://api.readingdev.com/rbc/getaddresses/${postCode}`);
 
@@ -10,6 +11,7 @@ async function getUPRN(postCode) {
   return json
 }
 
+// GET web api, returns a list of collections
 async function getCollections(UPRN) {
   const response = await fetch(`https://api.readingdev.com/api/collections/${UPRN}`)
 
