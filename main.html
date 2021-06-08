@@ -52,8 +52,7 @@
                                 <tbody>
                                     <tr v-for="address in addresses">
                                         <td>{{ address.SiteShortAddress }}</td>
-                                        <td><a href="#" :id=address.AccountSiteUprn
-                                                v-on:click="loadCollections">Search</a></td>
+                                        <td><a href="#" v-on:click="loadCollections(address.AccountSiteUprn)">Search</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -101,9 +100,9 @@
                     getUPRN(event.target.value)
                         .then(data => this.addresses = data.Addresses);
                 },
-                loadCollections: function (event) {
+                loadCollections: function (id) {
                     this.collections = [];
-                    getCollections(event.target.id)
+                    getCollections(id)
                         .then(data => this.collections = data.collections);
 
                 }
