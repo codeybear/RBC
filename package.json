@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "mocha": "^8.4.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0"
+  }
+}
